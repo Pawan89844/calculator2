@@ -1,3 +1,4 @@
+import 'package:calculator/module/home.dart';
 import 'package:flutter/material.dart';
 
 class Calculator extends StatelessWidget {
@@ -7,7 +8,7 @@ class Calculator extends StatelessWidget {
     return MaterialApp(
       title: 'Calculator',
       theme: ThemeData(useMaterial3: true),
-      home: const Placeholder(),
+      home: const Home(),
     );
   }
 }
