@@ -26,10 +26,14 @@ class _HomeState extends State<Home> {
   }
 
   String _numbers(int i) {
-    List<int> numbers = [];
-    numbers.add(i);
-    numbers = numbers.reversed.toList();
-    return '${i - 4}';
+    // List<int> numbers = [];
+    // numbers.add(i);
+    // numbers = numbers.reversed.toList();
+    if (i == 7 || i == 11 || i == 15) {
+      return '';
+    } else {
+      return '${9 - (i - 4) + 3}';
+    }
   }
 
   Container _digits(int i) {
@@ -63,17 +67,19 @@ class _HomeState extends State<Home> {
   }
 
   Container _gridBody(int i) {
-    if (i == 3 || i == 7 || i == 11 || i == 15 || i == 19) {
+    if (i % 4 == 3) {
       _incrJ();
       return _onLastColumn(j);
-    } else if (i == 0 || i < 3) {
+    } else if (i ~/ 4 == 0) {
       return _onFirstRow(i);
     } else if (i == 17 || i == 18) {
       return _onLastRow(i);
-    } else if (i >= 4 || i <= 9) {
+    }
+    // else if (i >= 4 || i <= 9) {
+    //   return _digits(i);
+    // }
+    else {
       return _digits(i);
-    } else {
-      return Container();
     }
   }
 
