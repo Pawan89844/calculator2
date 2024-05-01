@@ -10,6 +10,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int j = -1;
+  String _enteredValue = '';
+
   Container _onFirstRow(int i) {
     List<String> operator = ['AC', '%', '()'];
     return Container(
@@ -26,9 +28,6 @@ class _HomeState extends State<Home> {
   }
 
   String _numbers(int i) {
-    // List<int> numbers = [];
-    // numbers.add(i);
-    // numbers = numbers.reversed.toList();
     if (i == 7 || i == 11 || i == 15) {
       return '';
     } else {
@@ -40,7 +39,12 @@ class _HomeState extends State<Home> {
     return Container(
         // color: Colors.blue,
         alignment: Alignment.center,
-        child: TextButton(onPressed: () {}, child: Text(_numbers(i))));
+        child: TextButton(
+            onPressed: () {
+              _enteredValue += i.toString();
+              setState(() {});
+            },
+            child: Text(_numbers(i))));
   }
 
   @kDebugMode
@@ -74,11 +78,7 @@ class _HomeState extends State<Home> {
       return _onFirstRow(i);
     } else if (i == 17 || i == 18) {
       return _onLastRow(i);
-    }
-    // else if (i >= 4 || i <= 9) {
-    //   return _digits(i);
-    // }
-    else {
+    } else {
       return _digits(i);
     }
   }
@@ -90,6 +90,21 @@ class _HomeState extends State<Home> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          Container(
+              alignment: Alignment.centerRight,
+              margin: const EdgeInsets.only(right: 10.0),
+              child: Column(
+                children: [
+                  Text(
+                    _enteredValue,
+                    style: const TextStyle(fontSize: 25.0),
+                  ),
+                  Text(
+                    _enteredValue,
+                    style: const TextStyle(fontSize: 20.0),
+                  ),
+                ],
+              )),
           const Divider(color: Colors.black12),
           GridView(
             physics: const NeverScrollableScrollPhysics(),
