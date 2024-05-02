@@ -75,7 +75,8 @@ class _MyGridState extends State<MyGrid> with HomeHelper {
                 alignment: Alignment.center,
                 child: TextButton(
                     onPressed: () {
-                      if (!provider.userProvidedVal.contains('.')) {
+                      if (provider.userProvidedVal.isNotEmpty &&
+                          !provider.userProvidedVal.contains('.')) {
                         provider.inputValue = '.';
                       }
                     },
@@ -86,7 +87,6 @@ class _MyGridState extends State<MyGrid> with HomeHelper {
               child: TextButton(
                   onPressed: () {
                     if (provider.userProvidedVal.isNotEmpty) {
-                      print('True');
                       provider.replaceOperator();
                     }
                   },
