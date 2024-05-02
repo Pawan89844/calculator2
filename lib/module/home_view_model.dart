@@ -21,4 +21,10 @@ class HomeViewModel extends ChangeNotifier {
     _outputValue = val;
     notifyListeners();
   }
+
+  //TODO 1: Implement remove last string
+  void replaceOperator() {
+    _userTypedValue.substring(_userTypedValue.length - 1);
+    notifyListeners();
+  }
 }
