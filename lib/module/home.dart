@@ -63,6 +63,7 @@ class _MyGridState extends State<MyGrid> with HomeHelper {
           const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
       itemCount: 20,
       itemBuilder: (context, i) {
+        var provider = Provider.of<HomeViewModel>(context, listen: false);
         if (i % 4 == 3) {
           incrJ();
           return onLastColumn(j, context);
@@ -72,7 +73,13 @@ class _MyGridState extends State<MyGrid> with HomeHelper {
           if (i == 17) {
             return Container(
                 alignment: Alignment.center,
-                child: TextButton(onPressed: () {}, child: const Text('•')));
+                child: TextButton(
+                    onPressed: () {
+                      if (!provider.userProvidedVal.contains('.')) {
+                        provider.inputValue = '.';
+                      }
+                    },
+                    child: const Text('•')));
           } else {
             return Container(
               alignment: Alignment.center,
@@ -85,8 +92,8 @@ class _MyGridState extends State<MyGrid> with HomeHelper {
               alignment: Alignment.center,
               child: TextButton(
                   onPressed: () {
-                    var provider =
-                        Provider.of<HomeViewModel>(context, listen: false);
+                    // var provider =
+                    //     Provider.of<HomeViewModel>(context, listen: false);
                     provider.inputValue = numbers[digitIndex(i)].toString();
                   },
                   child: Text(numbers[k].toString())));
