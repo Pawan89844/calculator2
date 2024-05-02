@@ -79,7 +79,6 @@ mixin HomeHelper {
                 provider.inputValue = operators[i];
               }
               if (provider.userProvidedVal.endsWith(operators[i])) {
-                provider.replaceOperator();
                 // provider.inputValue = operators[i];
               }
             },
