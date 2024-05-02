@@ -83,7 +83,14 @@ class _MyGridState extends State<MyGrid> with HomeHelper {
           } else {
             return Container(
               alignment: Alignment.center,
-              child: TextButton(onPressed: () {}, child: const Text('⌫')),
+              child: TextButton(
+                  onPressed: () {
+                    if (provider.userProvidedVal.isNotEmpty) {
+                      print('True');
+                      provider.replaceOperator();
+                    }
+                  },
+                  child: const Text('⌫')),
             );
           }
         } else {
@@ -92,8 +99,6 @@ class _MyGridState extends State<MyGrid> with HomeHelper {
               alignment: Alignment.center,
               child: TextButton(
                   onPressed: () {
-                    // var provider =
-                    //     Provider.of<HomeViewModel>(context, listen: false);
                     provider.inputValue = numbers[digitIndex(i)].toString();
                   },
                   child: Text(numbers[k].toString())));

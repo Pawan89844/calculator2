@@ -74,7 +74,14 @@ mixin HomeHelper {
         child: TextButton(
             onPressed: () {
               var provider = Provider.of<HomeViewModel>(context, listen: false);
-              provider.inputValue = operators[i];
+              if (provider.userProvidedVal.isNotEmpty &&
+                  !provider.userProvidedVal.contains(operators[i])) {
+                provider.inputValue = operators[i];
+              }
+              if (provider.userProvidedVal.endsWith(operators[i])) {
+                provider.replaceOperator();
+                // provider.inputValue = operators[i];
+              }
             },
             child: Text(operators[i].toString())));
   }
