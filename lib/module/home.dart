@@ -1,5 +1,7 @@
+import 'package:calculator/module/home_view_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -10,16 +12,23 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int j = -1;
-  String _enteredValue = '';
+  int k = -1;
 
-  Container _onFirstRow(int i) {
+  Widget _onFirstRow(int i) {
     List<String> operator = ['AC', '%', '()'];
     return Container(
         alignment: Alignment.center,
-        child: TextButton(onPressed: () {}, child: Text(operator[i])));
+        child: TextButton(
+            onPressed: () {
+              var provider = Provider.of<HomeViewModel>(context, listen: false);
+              if (operator[i] == 'AC') {
+                provider.clear();
+              }
+            },
+            child: Text(operator[i])));
   }
 
-  Container _onLastColumn(int i) {
+  Widget _onLastColumn(int i) {
     List<String> operators = ['÷', 'x', '-', '+', '='];
     return Container(
         alignment: Alignment.center,
@@ -28,23 +37,31 @@ class _HomeState extends State<Home> {
   }
 
   String _numbers(int i) {
-    if (i == 7 || i == 11 || i == 15) {
-      return '';
-    } else {
-      return '${9 - (i - 4) + 3}';
-    }
+    List<int> numbers = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0];
+    _incrK();
+    return '${numbers[k]}';
   }
 
-  Container _digits(int i) {
+  Widget _digits(int i) {
     return Container(
         // color: Colors.blue,
         alignment: Alignment.center,
         child: TextButton(
             onPressed: () {
-              _enteredValue += i.toString();
-              setState(() {});
+              var provider = Provider.of<HomeViewModel>(context, listen: false);
+              provider.inputValue = _numbers(i);
             },
             child: Text(_numbers(i))));
+  }
+
+  @kDebugMode
+  void _incrK() {
+    if (k < 9) {
+      k++;
+    } else {
+      k = -1;
+      k++;
+    }
   }
 
   @kDebugMode
@@ -57,7 +74,7 @@ class _HomeState extends State<Home> {
     }
   }
 
-  Container _onLastRow(int i) {
+  Widget _onLastRow(int i) {
     if (i == 17) {
       return Container(
           alignment: Alignment.center,
@@ -70,7 +87,7 @@ class _HomeState extends State<Home> {
     }
   }
 
-  Container _gridBody(int i) {
+  Widget _gridBody(int i) {
     if (i % 4 == 3) {
       _incrJ();
       return _onLastColumn(j);
@@ -85,6 +102,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    print('Build called');
     return Scaffold(
       appBar: AppBar(elevation: 0.0),
       body: Column(
@@ -93,18 +111,20 @@ class _HomeState extends State<Home> {
           Container(
               alignment: Alignment.centerRight,
               margin: const EdgeInsets.only(right: 10.0),
-              child: Column(
-                children: [
-                  Text(
-                    _enteredValue,
-                    style: const TextStyle(fontSize: 25.0),
-                  ),
-                  Text(
-                    _enteredValue,
-                    style: const TextStyle(fontSize: 20.0),
-                  ),
-                ],
-              )),
+              child: Consumer<HomeViewModel>(builder: (context, val, _) {
+                return Column(
+                  children: [
+                    Text(
+                      val.userProvidedVal,
+                      style: const TextStyle(fontSize: 25.0),
+                    ),
+                    Text(
+                      val.outputValue,
+                      style: const TextStyle(fontSize: 20.0),
+                    ),
+                  ],
+                );
+              })),
           const Divider(color: Colors.black12),
           GridView(
             physics: const NeverScrollableScrollPhysics(),
