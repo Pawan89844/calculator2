@@ -22,8 +22,10 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void replaceOperator() {
+  void removeLast() {
     _userTypedValue = _userTypedValue.substring(0, _userTypedValue.length - 1);
     notifyListeners();
   }
+
+  // void overrideOperator(String newOperator) {}
 }

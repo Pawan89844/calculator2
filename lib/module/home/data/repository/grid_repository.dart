@@ -1,3 +1,4 @@
+import 'package:calculator/module/home/data/repository/operations_repository.dart';
 import 'package:calculator/module/home/view%20model/home_view_model.dart';
 
 import '../model/buttons_model.dart';
@@ -15,7 +16,7 @@ abstract class GridRepo {
   void onNumbers(int i, HomeViewModel provider) {}
 }
 
-class GridRepository implements GridRepo {
+class GridRepository extends OperationsRepository implements GridRepo {
   int j = -1;
   int k = -1;
 
@@ -68,6 +69,10 @@ class GridRepository implements GridRepo {
     if (Exp.specialExp[i].specialExp == 'AC') {
       provider.clear();
     }
+    if (Exp.specialExp[i].specialExp == '%' &&
+        provider.userProvidedVal.isNotEmpty) {
+      provider.inputValue = Exp.specialExp[i].specialExp;
+    }
   }
 
   @override
@@ -77,7 +82,7 @@ class GridRepository implements GridRepo {
       provider.inputValue = Exp.arthExp[i].arithmaticExp;
     }
     if (provider.userProvidedVal.endsWith(Exp.arthExp[i].arithmaticExp)) {
-      // provider.inputValue = operators[i];
+      // provider.overrideOperator(Exp.arthExp[i].arithmaticExp);
     }
   }
 
@@ -92,7 +97,7 @@ class GridRepository implements GridRepo {
   @override
   void onSpecialOperatorElse(int i, HomeViewModel provider) {
     if (provider.userProvidedVal.isNotEmpty) {
-      provider.replaceOperator();
+      provider.removeLast();
     }
   }
 
