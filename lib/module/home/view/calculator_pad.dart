@@ -24,14 +24,14 @@ class _CalculatorPadState extends State<CalculatorPad> with GridHelper {
       itemBuilder: (context, i) {
         var provider = Provider.of<HomeViewModel>(context, listen: false);
         if (i % 4 == 3) {
-          incrJ();
-          return onLastColumn(j, context);
+          repository.incrementJ();
+          return onLastColumn(repository.j, provider);
         } else if (i ~/ 4 == 0) {
-          return onFirstRow(i, context);
+          return onFirstRow(i, provider);
         } else if (i == 17 || i == 18) {
           return onSpecialCell(i, provider);
         } else {
-          incrK();
+          repository.incrementK();
           return onElseCase(i, provider);
         }
       },
