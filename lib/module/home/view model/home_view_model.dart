@@ -27,5 +27,5 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  // void overrideOperator(String newOperator) {}
+  void overrideOperator(String newOperator) {}
 }

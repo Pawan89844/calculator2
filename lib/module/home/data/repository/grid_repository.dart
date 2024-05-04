@@ -77,12 +77,15 @@ class GridRepository extends OperationsRepository implements GridRepo {
 
   @override
   void onClickOfOperators(int i, HomeViewModel provider) {
-    if (provider.userProvidedVal.isNotEmpty &&
-        !provider.userProvidedVal.contains(Exp.arthExp[i].arithmaticExp)) {
+    String val = provider.userProvidedVal;
+    if (val.isEmpty) {
+      return;
+    } else {
       provider.inputValue = Exp.arthExp[i].arithmaticExp;
     }
-    if (provider.userProvidedVal.endsWith(Exp.arthExp[i].arithmaticExp)) {
-      // provider.overrideOperator(Exp.arthExp[i].arithmaticExp);
+    if (provider.userProvidedVal[provider.userProvidedVal.length - 1] ==
+        Exp.arthExp[i].arithmaticExp) {
+      print('True: ${Exp.arthExp[i].arithmaticExp}');
     }
   }
 
