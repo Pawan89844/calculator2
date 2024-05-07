@@ -64,6 +64,10 @@ class GridRepository extends OperationsRepository implements GridRepo {
     }
   }
 
+  /// The function consist functionalities...
+  /// 1. Clear the input through AC.
+  /// 2. Calculate Percentage of Provided Value.
+  /// 3. Calulate Square.
   @override
   void onFirstRowClick(int i, HomeViewModel provider) {
     if (Exp.specialExp[i].specialExp == 'AC') {
@@ -83,10 +87,10 @@ class GridRepository extends OperationsRepository implements GridRepo {
     } else {
       provider.inputValue = Exp.arthExp[i].arithmaticExp;
     }
-    if (provider.userProvidedVal[provider.userProvidedVal.length - 1] ==
-        Exp.arthExp[i].arithmaticExp) {
-      print('True: ${Exp.arthExp[i].arithmaticExp}');
-    }
+    // if (provider.userProvidedVal[provider.userProvidedVal.length - 1] ==
+    //     Exp.arthExp[i].arithmaticExp) {
+    //   print('True: ${Exp.arthExp[i].arithmaticExp}');
+    // }
   }
 
   @override

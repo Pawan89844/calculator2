@@ -13,6 +13,8 @@ abstract class Operations {
 }
 
 class OperationsRepository implements Operations {
+
+  /// The function will perform addition operation.
   @override
   void add(int i, int digitIndex) {
     if (Exp.arthExp[i].arithmaticExp == '+') {
