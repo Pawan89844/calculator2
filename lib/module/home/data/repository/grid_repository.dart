@@ -40,6 +40,7 @@ class GridRepository extends OperationsRepository implements GridRepo {
     }
   }
 
+  /// Manual Indexing of Numbers from Grid.
   int digitIndex(int i) {
     if (i == 4) {
       return 0;
@@ -79,20 +80,23 @@ class GridRepository extends OperationsRepository implements GridRepo {
     }
   }
 
+  /// This function has...
+  /// 1. Populates typed value to the screen.
+  /// 2. Performs calculations onto user input
   @override
   void onClickOfOperators(int i, HomeViewModel provider) {
     String val = provider.userProvidedVal;
-    if (val.isEmpty) {
-      return;
-    } else {
+    if (val.isNotEmpty) {
       provider.inputValue = Exp.arthExp[i].arithmaticExp;
     }
+    calculate(provider);
     // if (provider.userProvidedVal[provider.userProvidedVal.length - 1] ==
     //     Exp.arthExp[i].arithmaticExp) {
     //   print('True: ${Exp.arthExp[i].arithmaticExp}');
     // }
   }
 
+  /// The function adds a dot between values.
   @override
   void onSpecialOperator(int i, HomeViewModel provider) {
     if (provider.userProvidedVal.isNotEmpty &&
@@ -101,6 +105,7 @@ class GridRepository extends OperationsRepository implements GridRepo {
     }
   }
 
+  /// This function removes last value entered by user.
   @override
   void onSpecialOperatorElse(int i, HomeViewModel provider) {
     if (provider.userProvidedVal.isNotEmpty) {
@@ -108,6 +113,7 @@ class GridRepository extends OperationsRepository implements GridRepo {
     }
   }
 
+  /// The function displays numbers onto the CalInput Panel.
   @override
   void onNumbers(int i, HomeViewModel provider) {
     provider.inputValue = Exp.opsNum[digitIndex(i)].opsNumber.toString();

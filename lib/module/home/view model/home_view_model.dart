@@ -14,11 +14,12 @@ class HomeViewModel extends ChangeNotifier {
 
   void clear() {
     _userTypedValue = '';
+    _outputValue = '';
     notifyListeners();
   }
 
   set outputValue(String val) {
-    _outputValue = val;
+    _outputValue = val.substring(0, val.length-1);
     notifyListeners();
   }
 
