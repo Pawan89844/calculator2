@@ -1,6 +1,10 @@
 import 'package:calculator/module/home/data/model/buttons_model.dart';
+import 'package:calculator/module/home/view%20model/home_view_model.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 abstract class Operations {
+  @mustCallSuper
   void add(int i, int digitIndex) {}
 
   void subtract() {}
@@ -9,7 +13,8 @@ abstract class Operations {
 
   void multiply() {}
 
-  void calculate() {}
+  void calculate(HomeViewModel viewModel) {}
+
 }
 
 class OperationsRepository implements Operations {
@@ -23,8 +28,11 @@ class OperationsRepository implements Operations {
   }
 
   @override
-  void calculate() {
-    // TODO: implement calculate
+  void calculate(HomeViewModel viewModel) {
+    if(viewModel.userProvidedVal.endsWith('=')){
+      viewModel.outputValue = viewModel.userProvidedVal;
+      viewModel.removeLast();
+    }
   }
 
   @override
@@ -41,4 +49,5 @@ class OperationsRepository implements Operations {
   void subtract() {
     // TODO: implement subtract
   }
+  
 }
