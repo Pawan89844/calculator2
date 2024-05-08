@@ -65,10 +65,12 @@ class GridRepository extends OperationsRepository implements GridRepo {
     }
   }
 
+//****************************************************************
   /// The function consist functionalities...
   /// 1. Clear the input through AC.
   /// 2. Calculate Percentage of Provided Value.
   /// 3. Calulate Square.
+//****************************************************************
   @override
   void onFirstRowClick(int i, HomeViewModel provider) {
     if (Exp.specialExp[i].specialExp == 'AC') {
@@ -78,11 +80,14 @@ class GridRepository extends OperationsRepository implements GridRepo {
         provider.userProvidedVal.isNotEmpty) {
       provider.inputValue = Exp.specialExp[i].specialExp;
     }
+    provider.setState();
   }
 
+//****************************************************************
   /// This function has...
   /// 1. Populates typed value to the screen.
   /// 2. Performs calculations onto user input
+//****************************************************************
   @override
   void onClickOfOperators(int i, HomeViewModel provider) {
     String val = provider.userProvidedVal;
@@ -90,32 +95,45 @@ class GridRepository extends OperationsRepository implements GridRepo {
       provider.inputValue = Exp.arthExp[i].arithmaticExp;
     }
     calculate(provider);
-    // if (provider.userProvidedVal[provider.userProvidedVal.length - 1] ==
-    //     Exp.arthExp[i].arithmaticExp) {
-    //   print('True: ${Exp.arthExp[i].arithmaticExp}');
-    // }
+    provider.setState();
   }
 
+//****************************************************************
   /// The function adds a dot between values.
+//****************************************************************
   @override
   void onSpecialOperator(int i, HomeViewModel provider) {
     if (provider.userProvidedVal.isNotEmpty &&
         !provider.userProvidedVal.contains('.')) {
       provider.inputValue = '.';
     }
+    provider.setState();
   }
 
+//****************************************************************
   /// This function removes last value entered by user.
+//****************************************************************
   @override
   void onSpecialOperatorElse(int i, HomeViewModel provider) {
     if (provider.userProvidedVal.isNotEmpty) {
       provider.removeLast();
     }
+    provider.setState();
   }
 
+//****************************************************************
   /// The function displays numbers onto the CalInput Panel.
+//****************************************************************
   @override
   void onNumbers(int i, HomeViewModel provider) {
     provider.inputValue = Exp.opsNum[digitIndex(i)].opsNumber.toString();
+    provider.setState();
   }
 }
+
+
+
+    // if (provider.userProvidedVal[provider.userProvidedVal.length - 1] ==
+    //     Exp.arthExp[i].arithmaticExp) {
+    //   print('True: ${Exp.arthExp[i].arithmaticExp}');
+    // }

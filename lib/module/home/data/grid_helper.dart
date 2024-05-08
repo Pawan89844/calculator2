@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 mixin GridHelper {
   GridRepository repository = GridRepository();
 
+//************************************************************************************
   ///This method is reserved for Top operation to the UI (Example : AC, %, and ().)
+//************************************************************************************
   Widget onFirstRow(int i, HomeViewModel provider) {
     return Container(
         alignment: Alignment.center,
@@ -15,7 +17,9 @@ mixin GridHelper {
             child: Text(Exp.specialExp[i].specialExp, style: const TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold))));
   }
 
+//************************************************************************************
   /// This column is Reserved for Arithmatic operators such as (/, *, -, and =)
+//************************************************************************************
   Widget onLastColumn(int i, HomeViewModel provider) {
     return Container(
         alignment: Alignment.center,
@@ -24,7 +28,9 @@ mixin GridHelper {
             child: Text(Exp.arthExp[i].arithmaticExp.toString(), style: const TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold))));
   }
 
+//************************************************************************************
   /// This method is used for Displaying Dot and Backspace only at the bottom.
+//************************************************************************************
   Widget onSpecialCell(int i, HomeViewModel provider) {
     if (i == 17) {
       return Container(
@@ -42,7 +48,9 @@ mixin GridHelper {
     }
   }
 
+//***********************************************************************************************
   /// This case is displaying numbers conditionally for example (0, 1, 2, 3, 4, 5, 6, 7, 8, 9).
+//***********************************************************************************************
   Widget onElseCase(int i, HomeViewModel provider) {
     return Container(
         alignment: Alignment.center,
