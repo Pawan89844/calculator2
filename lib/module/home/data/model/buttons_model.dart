@@ -18,9 +18,10 @@
 
 class ArithmaticExpressions {
   final int id;
+  final int precedence;
   final String arithmaticExp;
 
-  ArithmaticExpressions({required this.id, required this.arithmaticExp});
+  ArithmaticExpressions({required this.id, required this.precedence, required this.arithmaticExp});
 }
 
 class OperationalNumbers {
@@ -39,11 +40,11 @@ class SpecialExpressions {
 
 class Exp {
   static List<ArithmaticExpressions> arthExp = <ArithmaticExpressions>[
-    ArithmaticExpressions(id: 0, arithmaticExp: '÷'),
-    ArithmaticExpressions(id: 1, arithmaticExp: 'x'),
-    ArithmaticExpressions(id: 2, arithmaticExp: '-'),
-    ArithmaticExpressions(id: 3, arithmaticExp: '+'),
-    ArithmaticExpressions(id: 4, arithmaticExp: '='),
+    ArithmaticExpressions(id: 0, precedence: 2, arithmaticExp: '÷'),
+    ArithmaticExpressions(id: 1, precedence: 2, arithmaticExp: 'x'),
+    ArithmaticExpressions(id: 2, precedence: 1, arithmaticExp: '-'),
+    ArithmaticExpressions(id: 3, precedence: 1, arithmaticExp: '+'),
+    ArithmaticExpressions(id: 4, precedence: 0, arithmaticExp: '='),
   ];
   static List<OperationalNumbers> opsNum = [
     OperationalNumbers(id: 0, opsNumber: 7),
