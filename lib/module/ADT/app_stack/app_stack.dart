@@ -9,9 +9,12 @@ class ADTStack<T> {
   ADTStack([T? value]){
     Node newNode = Node(value);
     _top = newNode;
-    _height = 1;
+    _height = 0;
   }
 
+  bool get isEmpty => _isEmpty();
+  bool get isNotEmpty => !_isEmpty();
+  
 
   void printList(){
     Node? temp = _top;
@@ -39,5 +42,13 @@ class ADTStack<T> {
     temp?.next = null;
     _height--;
     return temp;
+  }
+
+  bool _isEmpty(){
+    if(_top?.value == null){
+      return true;
+    }else{
+      return false;
+    }
   }
 }

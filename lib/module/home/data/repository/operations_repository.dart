@@ -1,3 +1,4 @@
+import 'package:calculator/module/ADT/algorithm/shunting_yard.dart';
 import 'package:calculator/module/ADT/app_stack/app_stack.dart';
 import 'package:calculator/module/home/data/model/buttons_model.dart';
 import 'package:calculator/module/home/view%20model/home_view_model.dart';
@@ -19,8 +20,6 @@ abstract class Operations {
 }
 
 class OperationsRepository implements Operations {
- ADTStack inputStack = ADTStack();
- ADTStack outputStack = ADTStack();
 
 //******************************************************
   /// The function will perform addition operation.
@@ -34,9 +33,12 @@ class OperationsRepository implements Operations {
 
   @override
   void calculate(HomeViewModel viewModel) {
+    ShuntingYard yard = ShuntingYard();
     if(viewModel.userProvidedVal.endsWith('=')){
       viewModel.outputValue = viewModel.userProvidedVal;
       viewModel.removeLast();
+      var val = yard.evaluate(viewModel.userProvidedVal);
+      print('Value: $val');
     }
   }
 
