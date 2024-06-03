@@ -6,7 +6,7 @@ class ADTStack<T> {
   Node? _top;
   late int _height;
 
-  ADTStack([T? value]){
+  ADTStack([T? value]) {
     Node newNode = Node(value);
     _top = newNode;
     _height = 0;
@@ -14,9 +14,9 @@ class ADTStack<T> {
 
   bool get isEmpty => _isEmpty();
   bool get isNotEmpty => !_isEmpty();
-  
+  T get last => _last();
 
-  void printList(){
+  void printList() {
     Node? temp = _top;
     while (temp != null) {
       print(temp.value);
@@ -24,31 +24,35 @@ class ADTStack<T> {
     }
   }
 
-  void push(T value){
+  void push(T value) {
     Node? newNode = Node(value);
-    if(_height == 0){
+    if (_height == 0) {
       _top = newNode;
-    }else{
+    } else {
       newNode.next = _top;
       _top = newNode;
     }
     _height++;
   }
 
-  Node? pop(){
+  Node? pop() {
     Node? temp = _top;
-    if(_height == 0) return null;
+    if (_height == 0) return null;
     _top = temp?.next;
     temp?.next = null;
     _height--;
     return temp;
   }
 
-  bool _isEmpty(){
-    if(_top?.value == null){
+  bool _isEmpty() {
+    if (_top?.value == null) {
       return true;
-    }else{
+    } else {
       return false;
     }
+  }
+
+  T _last() {
+    return _top?.value;
   }
 }
