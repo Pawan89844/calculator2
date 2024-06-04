@@ -15,6 +15,7 @@ class ADTStack<T> {
   bool get isEmpty => _isEmpty();
   bool get isNotEmpty => !_isEmpty();
   T get last => _last();
+  int get length => _height;
 
   void printList() {
     Node? temp = _top;
