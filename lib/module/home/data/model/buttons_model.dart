@@ -1,27 +1,12 @@
-// class ButtonsModel {
-//   final List<ArithmaticExpressions> arthExp;
-//   final List<OperationalNumbers> operationalNumbers;
-//   final List<SpecialExpressions> specialExpressions;
-
-//   ButtonsModel(
-//       {required this.arthExp,
-//       required this.operationalNumbers,
-//       required this.specialExpressions});
-
-//   factory ButtonsModel.expressions() {
-//     return ButtonsModel(
-//         arthExp: Exp.arthExp,
-//         operationalNumbers: Exp.opsNum,
-//         specialExpressions: Exp.specialExp);
-//   }
-// }
-
 class ArithmaticExpressions {
   final int id;
   final int precedence;
   final String arithmaticExp;
 
-  ArithmaticExpressions({required this.id, required this.precedence, required this.arithmaticExp});
+  ArithmaticExpressions(
+      {required this.id,
+      required this.precedence,
+      required this.arithmaticExp});
 }
 
 class OperationalNumbers {
