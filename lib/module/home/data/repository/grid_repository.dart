@@ -4,16 +4,16 @@ import 'package:calculator/module/home/view%20model/home_view_model.dart';
 import '../model/buttons_model.dart';
 
 abstract class GridRepo {
-  void incrementJ() {}
+  void incrementJ();
 
-  void incrementK() {}
+  void incrementK();
 
-  void onFirstRowClick(int i, HomeViewModel proivder) {}
+  void onFirstRowClick(int i, HomeViewModel proivder);
 
-  void onClickOfOperators(int i, HomeViewModel provider) {}
-  void onSpecialOperator(int i, HomeViewModel provider) {}
-  void onSpecialOperatorElse(int i, HomeViewModel provider) {}
-  void onNumbers(int i, HomeViewModel provider) {}
+  void onClickOfOperators(int i, HomeViewModel provider);
+  void onSpecialOperator(int i, HomeViewModel provider);
+  void onSpecialOperatorElse(int i, HomeViewModel provider);
+  void onNumbers(int i, HomeViewModel provider);
 }
 
 class GridRepository extends OperationsRepository implements GridRepo {
@@ -130,10 +130,3 @@ class GridRepository extends OperationsRepository implements GridRepo {
     provider.setState();
   }
 }
-
-
-
-    // if (provider.userProvidedVal[provider.userProvidedVal.length - 1] ==
-    //     Exp.arthExp[i].arithmaticExp) {
-    //   print('True: ${Exp.arthExp[i].arithmaticExp}');
-    // }
