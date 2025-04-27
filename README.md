@@ -1,7 +1,5 @@
 ## CALCULATOR 2.0
 
-# Hi, Thank You so much and appreciate you are here.
-
 This is a Calculator which is built on using traditional Data Structures and Algorithm.
 
 ## Features
